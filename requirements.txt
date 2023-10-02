@@ -1,0 +1,4 @@
+langchain[llms]
+google-cloud-aiplatform
+streamlit
+google-cloud-texttospeech

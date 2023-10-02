@@ -5,6 +5,10 @@ import uuid
 import os
 import json
 
+credentials = service_account.Credentials.from_service_account_info(
+    st.secrets["gcs_connections"]
+)
+
 def gen_image(text):
     PROJECT_ID = 'sk-sandbox01' # @param {type:"string"}
     LOCATION = 'us-central1'  # @param {type:"string"}
@@ -12,7 +16,7 @@ def gen_image(text):
     import vertexai
     from vertexai.preview.vision_models import Image, ImageGenerationModel
 
-    vertexai.init(project=PROJECT_ID, location=LOCATION)
+    vertexai.init(project=PROJECT_ID, location=LOCATION, credentials=credentials)
 
     model = ImageGenerationModel.from_pretrained("imagegeneration@002")
     images1 = model.generate_images(

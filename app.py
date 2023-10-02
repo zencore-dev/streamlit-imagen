@@ -1,8 +1,5 @@
 import streamlit as st
 from google.oauth2 import service_account
-import google.cloud.texttospeech as tts
-import uuid
-import os
 import json
 
 credentials = service_account.Credentials.from_service_account_info(
@@ -10,7 +7,7 @@ credentials = service_account.Credentials.from_service_account_info(
 )
 
 def gen_image(text):
-    PROJECT_ID = 'sk-sandbox01' # @param {type:"string"}
+    PROJECT_ID = 'skeenan' # @param {type:"string"}
     LOCATION = 'us-central1'  # @param {type:"string"}
 
     import vertexai
@@ -30,6 +27,7 @@ def gen_image(text):
     images1[1].save(location="./gen-img2.png", include_generation_parameters=True)
 
     st.image("./gen-img1.png")
+    st.button("Vote for image 1")
     st.image("./gen-img2.png")
 
 
@@ -43,5 +41,6 @@ if menufile is not None:
     for a restaurant with the following description: {description}
     """.format(item=data['items'][0], description=data['description'])
     gen_image(menutext)
+
 
 

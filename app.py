@@ -8,7 +8,6 @@ credentials = service_account.Credentials.from_service_account_info(
 )
 fileid = str(uuid.uuid4())
 
-
 def gen_image(text):
     PROJECT_ID = 'skeenan' # @param {type:"string"}
     LOCATION = 'us-central1'  # @param {type:"string"}
@@ -43,7 +42,6 @@ def gen_image(text):
         st.image("./{}4.png".format(fileid))
         st.button(":+1:", key="4")
 
-
 st.chat_message("user").write("Please upload a menu file")
 menufile = st.file_uploader("Menu File", type=["json"])
 if menufile is not None:
@@ -54,6 +52,3 @@ if menufile is not None:
     for a restaurant with the following description: {description}
     """.format(item=data['items'][0], description=data['description'])
     gen_image(menutext)
-
-
-

@@ -34,14 +34,14 @@ def gen_image(text):
     columns = st.columns(2)
     with columns[0]:
         st.image("./{}1.png".format(fileid))
-        st.button("Vote for image 1")
+        st.button(":+1:", key="1")
         st.image("./{}3.png".format(fileid))
-        st.button("Vote for image 3")
+        st.button(":+1:", key="3")
     with columns[1]:
         st.image("./{}2.png".format(fileid))
-        st.button("Vote for image 2")
+        st.button(":+1:", key="2")
         st.image("./{}4.png".format(fileid))
-        st.button("Vote for image 4")
+        st.button(":+1:", key="4")
 
 
 st.chat_message("user").write("Please upload a menu file")

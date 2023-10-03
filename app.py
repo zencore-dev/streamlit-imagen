@@ -22,17 +22,26 @@ def gen_image(text):
     images1 = model.generate_images(
     prompt=text,
     # Optional:
-    number_of_images=2,
+    number_of_images=4,
     seed=1
     )
 
     images1[0].save(location="./{}1.png".format(fileid), include_generation_parameters=True)
     images1[1].save(location="./{}2.png".format(fileid), include_generation_parameters=True)
+    images1[2].save(location="./{}3.png".format(fileid), include_generation_parameters=True)
+    images1[3].save(location="./{}4.png".format(fileid), include_generation_parameters=True)
 
-    st.image("./{}1.png".format(fileid))
-    st.button("Vote for image 1")
-    st.image("./{}2.png".format(fileid))
-    st.button("Vote for image 2")
+    columns = st.columns(2)
+    with columns[0]:
+        st.image("./{}1.png".format(fileid))
+        st.button("Vote for image 1")
+        st.image("./{}3.png".format(fileid))
+        st.button("Vote for image 3")
+    with columns[1]:
+        st.image("./{}2.png".format(fileid))
+        st.button("Vote for image 2")
+        st.image("./{}4.png".format(fileid))
+        st.button("Vote for image 4")
 
 
 st.chat_message("user").write("Please upload a menu file")

@@ -1,10 +1,13 @@
 import streamlit as st
 from google.oauth2 import service_account
 import json
+import uuid
 
 credentials = service_account.Credentials.from_service_account_info(
     st.secrets["gcs_connections"]
 )
+fileid = str(uuid.uuid4())
+
 
 def gen_image(text):
     PROJECT_ID = 'skeenan' # @param {type:"string"}
@@ -23,12 +26,13 @@ def gen_image(text):
     seed=1
     )
 
-    images1[0].save(location="./gen-img1.png", include_generation_parameters=True)
-    images1[1].save(location="./gen-img2.png", include_generation_parameters=True)
+    images1[0].save(location="./{}1.png".format(fileid), include_generation_parameters=True)
+    images1[1].save(location="./{}2.png".format(fileid), include_generation_parameters=True)
 
-    st.image("./gen-img1.png")
+    st.image("./{}1.png".format(fileid))
     st.button("Vote for image 1")
-    st.image("./gen-img2.png")
+    st.image("./{}2.png".format(fileid))
+    st.button("Vote for image 2")
 
 
 st.chat_message("user").write("Please upload a menu file")

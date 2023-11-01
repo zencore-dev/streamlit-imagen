@@ -18,17 +18,17 @@ def gen_image(text):
     vertexai.init(project=PROJECT_ID, location=LOCATION, credentials=credentials)
 
     model = ImageGenerationModel.from_pretrained("imagegeneration@002")
-    images1 = model.generate_images(
+    images = model.generate_images(
     prompt=text,
     # Optional:
     number_of_images=4,
     seed=1
     )
 
-    images1[0].save(location="./{}1.png".format(fileid), include_generation_parameters=True)
-    images1[1].save(location="./{}2.png".format(fileid), include_generation_parameters=True)
-    images1[2].save(location="./{}3.png".format(fileid), include_generation_parameters=True)
-    images1[3].save(location="./{}4.png".format(fileid), include_generation_parameters=True)
+    images[0].save(location="./{}1.png".format(fileid), include_generation_parameters=True)
+    images[1].save(location="./{}2.png".format(fileid), include_generation_parameters=True)
+    images[2].save(location="./{}3.png".format(fileid), include_generation_parameters=True)
+    images[3].save(location="./{}4.png".format(fileid), include_generation_parameters=True)
 
     columns = st.columns(2)
     with columns[0]:
